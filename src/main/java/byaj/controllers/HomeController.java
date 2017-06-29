@@ -39,7 +39,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(){
-        return "base";
+        return "form";
     }
 
     @GetMapping("/resume")
