@@ -172,12 +172,12 @@ public class HomeController {
     public String processResume(@Valid Resume resume, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("resume");
-            return "form2";
+            return "redirect:/resume";
         }
 
 
         resumeRepository.save(resume);
-        return "form2";
+        return "redirect:/resume";
 
     }
 
@@ -185,12 +185,12 @@ public class HomeController {
     public String processEducation(@Valid Education education, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("education");
-            return "form2";
+            return "redirect:/resume";
         }
 
         education.setEduRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         educationRepository.save(education);
-        return "form2";
+        return "redirect:/resume";
 
     }
     
@@ -198,11 +198,11 @@ public class HomeController {
     public String processSkill(@Valid Skill skill, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("skill");
-            return "form2";
+            return "redirect:/resume";
         }
         skill.setSkillRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         skillRepository.save(skill);
-        return "form2";
+        return "redirect:/resume";
 
     }
 
@@ -211,24 +211,24 @@ public class HomeController {
     public String processWork(@Valid Work work, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("work");
-            return "form2";
+            return "redirect:/resume";
         }
         work.setWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         workRepository.save(work);
-        return "form2";
+        return "redirect:/resume";
 
     }
     @PostMapping(path = "/add/Duty")
     public String processDuty(@Valid Duty duty, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("duty");
-            return "form2";
+            return "redirect:/resume";
         }
         duty.setDutyWork(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID());
         duty.setDutyWorkTitle(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkTitle());
         duty.setDutyRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         dutyRepository.save(duty);
-        return "form2";
+        return "redirect:/resume";
 
     }
 
