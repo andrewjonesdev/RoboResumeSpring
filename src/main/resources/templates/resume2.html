@@ -66,7 +66,7 @@
                             <tr th:object="${resume}">
                                 <td th:text="${{resume.resFirstName} + ' ' + {resume.resLastName}}"></td>
                                 <td th:text="${resume.resEmail}"></td>
-                                </td>
+
                             </tr>
                         </table>
                     </div>
@@ -96,7 +96,7 @@
                                 <td th:text="${row.degree}"></td>
                                 <td th:text="${row.school}"></td>
                                 <td th:text="${row.gradYear}"></td>
-                                </td>
+
                             </tr>
                         </table>
                 </div>
@@ -137,7 +137,7 @@
                                                 <td th:text="${work.workEmployer}"></td>
                                                 <td th:text="${{row.getWorkStringStartMonth()} + ' ' {row.workStartYear}}"></td>
                                                 <td th:text="${{row.getWorkStringEndMonth()} + ' ' {row.workEndYear}}"></td>
-                                                </td>
+
                                             </tr>
                                         </table>
                                     </div>
@@ -150,7 +150,7 @@
                                             <tr th:each="row : ${dutys}">
                                                 <td th:text="${row.dutyWorkTitle}"></td>
                                                 <td th:text="${row.dutyTitle}"></td>
-                                                </td>
+
                                             </tr>
                                         </table>
                                     </div>
@@ -179,7 +179,7 @@
                             <tr th:each="row : ${skills}">
                                 <td th:text="${edu.skillName}"></td>
                                 <td th:text="${row.skillRating}"></td>
-                                </td>
+
                             </tr>
                         </table>
                     </div>

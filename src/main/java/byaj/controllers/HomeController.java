@@ -224,8 +224,8 @@ public class HomeController {
             System.out.println("duty");
             return "redirect:/resume";
         }
-        duty.setDutyWork(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID());
-        duty.setDutyWorkTitle(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkTitle());
+        duty.setDutyWork(workRepository.findTopByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID());
+        duty.setDutyWorkTitle(workRepository.findTopByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkTitle());
         duty.setDutyRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         dutyRepository.save(duty);
         return "redirect:/resume";
