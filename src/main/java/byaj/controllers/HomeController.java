@@ -168,6 +168,19 @@ public class HomeController {
 
     }*/
 
+    @PostMapping(path = "/add/Resume")
+    public String processResume(@Valid Resume resume, BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("resume");
+            return "form2";
+        }
+
+        
+        resumeRepository.save(resume);
+        return "form2";
+
+    }
+
     @PostMapping(path = "/add/Education")
     public String processEducation(@Valid Education education, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
