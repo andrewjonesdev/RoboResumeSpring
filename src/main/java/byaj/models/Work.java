@@ -1,9 +1,6 @@
 package byaj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,9 +33,8 @@ public class Work {
     @NotNull
     @Min(1)
     private int workEndYear = 1;
-    @NotNull
-    @Min(1)
-    private int workRes = 1;
+    @Column(columnDefinition="integer default -1")
+    private int workRes = -1;
 
 
 

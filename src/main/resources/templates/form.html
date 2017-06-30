@@ -9,19 +9,19 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="../../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link charset="utf-8" href="/assets/css/bootstrap.min.css" rel="stylesheet" content-type="text/css" />
 
     <!--  Light Bootstrap Dashboard core CSS    -->
-    <link href="../../assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <link charset="utf-8" href="/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" content-type="text/css"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../assets/css/demo.css" rel="stylesheet" />
+    <link charset="utf-8" href="/assets/css/demo.css" rel="stylesheet" content-type="text/css" />
 
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'/>
-    <link href="../../assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link charset="utf-8" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" content-type="text/css"/>
+    <link charset="utf-8" href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' content-type='text/css'/>
+    <link charset="utf-8" href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet" content-type="text/css" />
 </head>
 <body>
 <th:block th:replace="base :: sidebar"></th:block>
@@ -206,13 +206,13 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label" for="exampleInputText2">First Name</label>
                                                         <div th:if="${not #fields.hasErrors('resFirstName')}" class="col-sm-10">
-                                                            <input type="text" class="form-control valid" id="exampleInputText2" placeholder="First Name"
+                                                            <input content-type="text" class="form-control valid" id="exampleInputText2" placeholder="First Name"
                                                                    th:field="*{resFirstName}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
                                                         <div th:if="${#fields.hasErrors('resFirstName')}"
                                                              class="col-sm-10">
-                                                            <input type="text" class="form-control error" id="exampleInputText2" placeholder="First Name"
+                                                            <input content-type="text" class="form-control error" id="exampleInputText2" placeholder="First Name"
                                                                    th:field="*{resFirstName}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
@@ -244,13 +244,13 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label" for="exampleInputText3">Last Name</label>
                                                         <div th:if="${not #fields.hasErrors('resLastName')}" class="col-sm-10">
-                                                            <input type="text" class="form-control valid" id="exampleInputText3" placeholder="Last Name"
+                                                            <input content-type="text" class="form-control valid" id="exampleInputText3" placeholder="Last Name"
                                                                    th:field="*{resLastName}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
                                                         <div th:if="${#fields.hasErrors('resLastName')}"
                                                              class="col-sm-10">
-                                                            <input type="text" class="form-control error" id="exampleInputText3" placeholder="Last Name"
+                                                            <input content-type="text" class="form-control error" id="exampleInputText3" placeholder="Last Name"
                                                                    th:field="*{resLastName}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
@@ -285,13 +285,13 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label" for="exampleInputText4">Email</label>
                                                         <div th:if="${not #fields.hasErrors('resEmail')}" class="col-sm-10">
-                                                            <input type="text" class="form-control valid" id="exampleInputText4" placeholder="First Name"
+                                                            <input content-type="text" class="form-control valid" id="exampleInputText4" placeholder="First Name"
                                                                    th:field="*{resEmail}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
                                                         <div th:if="${#fields.hasErrors('resEmail')}"
                                                              class="col-sm-10">
-                                                            <input type="text" class="form-control error" id="exampleInputText4" placeholder="First Name"
+                                                            <input content-type="text" class="form-control error" id="exampleInputText4" placeholder="First Name"
                                                                    th:field="*{resEmail}"/>
                                                             <span class="fa fa-remove form-control-feedback"></span>
                                                         </div>
@@ -324,7 +324,7 @@
 
                                                     <div class="panel-body">
 
-                                                        <button type="submit" class="btn btn-default">Submit</button>
+                                                        <button content-type="submit" class="btn btn-default">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>

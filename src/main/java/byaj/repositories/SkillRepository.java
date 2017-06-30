@@ -7,6 +7,8 @@ package byaj.repositories;
 import byaj.models.Skill;
 import org.springframework.data.repository.CrudRepository;
 
-public interface SkillRepository extends CrudRepository<Skill, Integer> {
+import java.util.List;
 
+public interface SkillRepository extends CrudRepository<Skill, Integer> {
+    public List<Skill> findAllBySkillResOrderBySkillNameAsc(int num);
 }

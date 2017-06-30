@@ -1,9 +1,6 @@
 package byaj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -24,9 +21,8 @@ public class Skill {
     @NotNull
     @Size(min=2, max=100)
     private String skillRating = "  ";
-    @NotNull
-    @Min(1)
-    private int skillRes = 1;
+    @Column(columnDefinition="integer default -1")
+    private int skillRes = -1;
 
 
     public int getSkillID() {

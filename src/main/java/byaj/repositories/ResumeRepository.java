@@ -8,5 +8,5 @@ import byaj.models.Resume;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ResumeRepository extends CrudRepository<Resume, Integer> {
-    public Resume findOneByResAcc(int num);
+    public Resume findOneByResUser(int num);
 }

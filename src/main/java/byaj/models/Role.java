@@ -12,14 +12,14 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    private int id;
 
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<User> users;
 
-    public long getID(){
+    public int getID(){
         return id;
     };
 

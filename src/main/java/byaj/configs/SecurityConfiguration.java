@@ -26,10 +26,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").permitAll()
-                //.antMatchers("/books/edit/**").hasRole("ADMIN")
                 .antMatchers("/assets/**").permitAll()
                 .antMatchers("/bootstrap-3.3.7-dist/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/register").permitAll()
+                //.antMatchers("/books/edit/**").hasRole("ADMIN")
                 //.antMatchers("/books/list").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -45,7 +46,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .httpBasic();
     }
 
-    @Override
+   /* @Override
     public void configure(WebSecurity web) throws Exception {
             web
                 .ignoring()
@@ -53,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                     .ignoring()
                 .antMatchers("/bootstrap-3.3.7-dist/**");
-    }
+    }*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

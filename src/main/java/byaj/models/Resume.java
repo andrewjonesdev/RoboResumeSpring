@@ -1,9 +1,6 @@
 package byaj.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,9 +24,8 @@ public class Resume {
     @NotNull
     @Size(min=2, max=100)
     private String resEmail = "  ";
-    @NotNull
-    @Min(-1)
-    private int resAcc = -1;
+    @Column(columnDefinition="integer default -1")
+    private int resUser = -1;
     
 
     public int getResID() {
@@ -39,12 +35,12 @@ public class Resume {
     /*public void setMateID(int resID) {
         this.resID = resID;
     }*/
-    public int getResAcc() {
-        return resAcc;
+    public int getResUser() {
+        return resUser;
     }
 
-    public void setResAcc (int resAcc) {
-        this.resAcc = resAcc;
+    public void setResUser (int resUser) {
+        this.resUser = resUser;
     }
     
     public String getResFirstName() {

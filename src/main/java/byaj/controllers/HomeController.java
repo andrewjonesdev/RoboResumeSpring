@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
     
     @Autowired
     private ResumeRepository resumeRepository;
@@ -39,9 +44,75 @@ public class HomeController {
 
     @RequestMapping("/")
     public String home(){
-        return "form";
+        return "base2";
+    }
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("resFirstName", new String());
+        model.addAttribute("resLastName", new String());
+        model.addAttribute("resEmail", new String());
+        model.addAttribute("username", new String());
+        model.addAttribute("password", new String());
+        model.addAttribute("role", new String());
+
+        return "register2";
+    }
+    @PostMapping("/register")
+    public String registering(@RequestParam("resFirstName") String resFirstName,
+                           @RequestParam("resLastName") String resLastName,
+                           @RequestParam("resEmail") String resEmail,
+                           @RequestParam("username") String username,
+                           @RequestParam("password") String password,
+                           @RequestParam("role") String theRole,
+                           Model model){
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        Role role = new Role();
+        role.setRole(theRole);
+        Resume resume = new Resume();
+        resume.setResFirstName(resFirstName);
+        resume.setResLastName(resLastName);
+        resume.setResEmail(resEmail);
+
+        userRepository.save(user);
+        resumeRepository.save(resume);
+        roleRepository.save(role);
+
+        userRepository.findOneByUsername(user.getUsername()).setUserResume(resume.getResID());
+        userRepository.save(userRepository.findOneByUsername(user.getUsername()));
+
+        resume.setResUser(userRepository.findOneByUsername(user.getUsername()).getID());
+        resumeRepository.save(resume);
+        return "login2";
     }
 
+    /*@PostMapping("/register")
+    public String newUser(){
+        if (userBindingResult.hasErrors()) {
+            System.out.println("user");
+            return "register";
+        }
+        if (resBindingResult.hasErrors()) {
+            System.out.println("resume");
+            return "register";
+        }
+        if (roleBindingResult.hasErrors()) {
+            System.out.println("role");
+            return "register";
+        }
+        userRepository.save(user);
+        resumeRepository.save(resume);
+        roleRepository.save(role);
+
+        userRepository.findOneByUsername(user.getUsername()).setUserResume(resume.getResID());
+        userRepository.save(userRepository.findOneByUsername(user.getUsername()));
+
+        resume.setResUser(userRepository.findOneByUsername(user.getUsername()).getID());
+        resumeRepository.save(resume);
+        return "login";
+    }*/
+    
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
         model.addAttribute("user", userRepository.findOneByUsername(principal.getName()));
@@ -51,22 +122,22 @@ public class HomeController {
             userRepository.findOneByUsername(principal.getName()).setUserResume(resume.getResID());
             userRepository.save(userRepository.findOneByUsername(principal.getName()));
             
-            resume.setResAcc(userRepository.findOneByUsername(principal.getName()).getID());
+            resume.setResUser(userRepository.findOneByUsername(principal.getName()).getID());
             resumeRepository.save(resume);
         }
         else{
-            model.addAttribute("resume", resumeRepository.findOneByResAcc(userRepository.findOneByUsername(principal.getName()).getID()));
+            model.addAttribute("resume", resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()));
         }
         model.addAttribute("education", new Education());
         model.addAttribute("work", new Work());
         model.addAttribute("duty", new Duty());
         model.addAttribute("skill", new Skill());
-        return "base";
+        return "form2";
     }
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "login2";
     }
 
 
@@ -80,12 +151,12 @@ public class HomeController {
     @GetMapping("/user")
     public String getReddit(Model model, Principal principal){
 
-        model.addAttribute("items", transactionATMRepository.findAllByTranAccOrderByTranDateDesc(Integer.parseInt(principal.getName())));
+        model.addAttribute("items", transactionATMRepository.findAllByTranUserOrderByTranDateDesc(Integer.parseInt(principal.getName())));
         return "byuser";
     }
 
     @PostMapping("/add")
-    public String processTransaction(@Valid TransactionATM transactionATM, BindingResult bindingResult, Account user, Principal principal) {
+    public String processTransaction(@Valid TransactionATM transactionATM, BindingResult bindingResult, Userount user, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("two");
             return "redirect:/";
@@ -100,40 +171,70 @@ public class HomeController {
     @PostMapping(path = "/add/Education")
     public String processEducation(@Valid Education education, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            System.out.println("two");
-            return "redirect:/";
+            System.out.println("education");
+            return "form2";
         }
 
-        education.setEduRes(resumeRepository.findOneByResAcc(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
+        education.setEduRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         educationRepository.save(education);
-        return "redirect:/user";
+        return "form2";
 
     }
     
     @PostMapping(path = "/add/Skill")
-    public String processTransaction(@Valid Skill skill, BindingResult bindingResult, Principal principal) {
+    public String processSkill(@Valid Skill skill, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            System.out.println("two");
-            return "redirect:/";
+            System.out.println("skill");
+            return "form2";
         }
-        skill.setSkillRes(resumeRepository.findOneByResAcc(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
+        skill.setSkillRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         skillRepository.save(skill);
-        return "redirect:/user";
+        return "form2";
 
     }
 
 
     @PostMapping(path = "/add/Work")
-    public String processTransaction(@Valid Work work, BindingResult bindingResult, Principal principal) {
+    public String processWork(@Valid Work work, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
-            System.out.println("two");
-            return "redirect:/";
+            System.out.println("work");
+            return "form2";
         }
-        work.setWorkRes(resumeRepository.findOneByResAcc(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
+        work.setWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
         workRepository.save(work);
-        return "redirect:/user";
+        return "form2";
+
+    }
+    @PostMapping(path = "/add/Duty")
+    public String processDuty(@Valid Duty duty, BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("duty");
+            return "form2";
+        }
+        duty.setDutyWork(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID());
+        duty.setDutyWorkTitle(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkTitle());
+        duty.setDutyRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID());
+        dutyRepository.save(duty);
+        return "form2";
 
     }
 
+    @PostMapping("/resume")
+    public String finalizeResume(){
+        return "redirect:/myresume";
+    }
+
+    @GetMapping("/myresume")
+    public String displayResume(Model model, Principal principal){
+        model.addAttribute("resume", resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()));
+        model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
+        model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearWorkEndMonthDesc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
+        //model.addAttribute("duties", dutyRepository.findAllByDutyWorkOrderByDutyTitleAsc(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID()));
+        model.addAttribute("duties", dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
+        model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
+        model.addAttribute("principal", principal);
+
+        return "resume2";
+    }
 
 }

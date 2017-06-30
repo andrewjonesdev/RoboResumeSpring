@@ -20,8 +20,9 @@ public class User {
 
     private String password;
 
-    private boolean enabled;
+    private boolean enabled = true;
 
+    @Column(columnDefinition="integer default -1")
     private int userResume;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

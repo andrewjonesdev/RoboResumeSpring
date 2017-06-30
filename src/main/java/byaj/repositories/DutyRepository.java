@@ -7,6 +7,9 @@ package byaj.repositories;
 import byaj.models.Duty;
 import org.springframework.data.repository.CrudRepository;
 
-public interface DutyRepository extends CrudRepository<Duty, Integer> {
+import java.util.List;
 
+public interface DutyRepository extends CrudRepository<Duty, Integer> {
+    public List<Duty> findAllByDutyWorkOrderByDutyTitleAsc(int num);
+    public List<Duty> findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(int num);
 }
