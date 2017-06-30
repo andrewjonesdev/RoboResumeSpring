@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org " xmlns:sec="www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>The Library Login</title>
 
@@ -16,12 +16,12 @@
     <br/><br/><br/><br/>
     <div class="starter-template">
     </div>
-    <br />
+    <br/>
     <div class="col-md-8 col-md-offset-2">
-        <h4 class="title text-center">Build Resume</h4>
+        <h4 class="title text-center">Resume</h4>
         <br/>
         <div class="nav-container">
-            <ul class="nav nav-tabs" role="tablist" >
+            <ul class="nav nav-tabs" role="tablist">
                 <li class="active">
                     <a href="#description-logo" role="tab" data-toggle="tab">
                         <i class="fa fa-info-circle"></i><br/>
@@ -92,106 +92,108 @@
                                 <th>Graduation Year</th>
                             </tr>
                             <tr th:each="row : ${edus}">
-                                <td th:text="${row.getCourseOfStudy()}"></td>
-                                <td th:text="${row.getDegree()}"></td>
-                                <td th:text="${row.getSchool()}"></td>
-                                <td th:text="${row.getGradYear()}"></td>
+                                <td th:text="${row.eduCourseOfStudy}"></td>
+                                <td th:text="${row.eduDegree}"></td>
+                                <td th:text="${row.eduSchool}"></td>
+                                <td th:text="${row.eduGradYear}"></td>
 
                             </tr>
                         </table>
-                </div>
-            </div>
-
-
-            <div class="tab-pane" id="legal-logo">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Workplace Experience</h4>
-                        <p class="category">Employment History</p>
                     </div>
+                </div>
 
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="content content-full-width">
-                                <ul role="tablist" class="nav nav-tabs">
-                                    <li role="presentation" class="active">
-                                        <a href="#icon-info" data-toggle="tab"><i class="fa fa-info"></i> Workplace History</a>
-                                    </li>
-                                    <li>
-                                        <a href="#icon-account" data-toggle="tab"><i class="fa fa-user"></i> Workplace Duties</a>
-                                    </li>
 
-                                </ul>
+                <div class="tab-pane" id="legal-logo">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Workplace Experience</h4>
+                            <p class="category">Employment History</p>
+                        </div>
 
-                                <div class="tab-content">
-                                    <div id="icon-info" class="tab-pane active">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <th>Job Title</th>
-                                                <th>Employer</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                            </tr>
-                                            <tr th:each="row : ${works}">
-                                                <td th:text="${row.getWorkTitle()}"></td>
-                                                <td th:text="${row.getWorkEmployer()}"></td>
-                                                <td th:text="${{row.getWorkStringStartMonth()} + ' ' ${row.getWorkStartYear()}"></td>
-                                                <td th:text="${row.getWorkStringEndMonth()}+ ' ' ${row.getWorkEndYear()}"></td>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="content content-full-width">
+                                    <ul role="tablist" class="nav nav-tabs">
+                                        <li role="presentation" class="active">
+                                            <a href="#icon-info" data-toggle="tab"><i class="fa fa-info"></i> Workplace
+                                                History</a>
+                                        </li>
+                                        <li>
+                                            <a href="#icon-account" data-toggle="tab"><i class="fa fa-user"></i>
+                                                Workplace Duties</a>
+                                        </li>
 
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div id="icon-account" class="tab-pane">
-                                        <table class="table table-striped">
-                                            <tr>
-                                                <th>Job</th>
-                                                <th>Duty</th>
-                                            </tr>
-                                            <tr th:each="row : ${dutys}">
-                                                <td th:text="${row.getDutyWorkTitle()}"></td>
-                                                <td th:text="${row.getDutyTitle()}"></td>
+                                    </ul>
 
-                                            </tr>
-                                        </table>
+                                    <div class="tab-content">
+                                        <div id="icon-info" class="tab-pane active">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Job Title</th>
+                                                    <th>Employer</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
+                                                </tr>
+                                                <tr th:each="row : ${works}">
+                                                    <td th:text="${row.workTitle}"></td>
+                                                    <td th:text="${row.workEmployer}"></td>
+                                                    <td th:text="${row.getWorkStringStartMonth()} + ' ' +${row.workStartYear}"></td>
+                                                    <td th:text="${row.getWorkStringEndMonth()}+ ' ' +${row.workEndYear}"></td>
+
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div id="icon-account" class="tab-pane">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Job</th>
+                                                    <th>Duty</th>
+                                                </tr>
+                                                <tr th:each="row : ${dutys}">
+                                                    <td th:text="${row.dutyWorkTitle}"></td>
+                                                    <td th:text="${row.dutyTitle}"></td>
+
+                                                </tr>
+                                            </table>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-pane" id="help-logo">
-                <div class="card">
-                    <div class="header">
-                        <h4 class="title">Skill</h4>
-                        <p class="category">Skills and Abilities</p>
-                    </div>
+                <div class="tab-pane" id="help-logo">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Skill</h4>
+                            <p class="category">Skills and Abilities</p>
+                        </div>
 
-                    <div class="content">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Skill</th>
-                                <th>Rating</th>
-                            </tr>
-                            <tr th:each="row : ${skills}">
-                                <td th:text="${row.getSkillName()}"></td>
-                                <td th:text="${row.getSkillRating()}"></td>
+                        <div class="content">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Skill</th>
+                                    <th>Rating</th>
+                                </tr>
+                                <tr th:each="row : ${skills}">
+                                    <td th:text="${row.skillName}"></td>
+                                    <td th:text="${row.skillRating}"></td>
 
-                            </tr>
-                        </table>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
-
     </div>
 </div>
-</div>
-<!-- /.container -->
+
 </body>
 <th:block th:replace="base2 :: footlinks"></th:block>
 
