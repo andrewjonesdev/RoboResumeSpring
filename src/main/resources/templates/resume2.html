@@ -64,7 +64,7 @@
                                 <th>Email</th>
                             </tr>
                             <tr th:object="${resume}">
-                                <td th:text="${{resume.resFirstName} + ' ' + {resume.resLastName}}"></td>
+                                <td th:text="${resume.resFirstName}+ ' ' + ${resume.resLastName}"></td>
                                 <td th:text="${resume.resEmail}"></td>
 
                             </tr>
@@ -92,10 +92,10 @@
                                 <th>Graduation Year</th>
                             </tr>
                             <tr th:each="row : ${edus}">
-                                <td th:text="${row.courseOfStudy}"></td>
-                                <td th:text="${row.degree}"></td>
-                                <td th:text="${row.school}"></td>
-                                <td th:text="${row.gradYear}"></td>
+                                <td th:text="${row.getCourseOfStudy()}"></td>
+                                <td th:text="${row.getDegree()}"></td>
+                                <td th:text="${row.getSchool()}"></td>
+                                <td th:text="${row.getGradYear()}"></td>
 
                             </tr>
                         </table>
@@ -133,10 +133,10 @@
                                                 <th>End Date</th>
                                             </tr>
                                             <tr th:each="row : ${works}">
-                                                <td th:text="${row.workTitle}"></td>
-                                                <td th:text="${work.workEmployer}"></td>
-                                                <td th:text="${{row.getWorkStringStartMonth()} + ' ' {row.workStartYear}}"></td>
-                                                <td th:text="${{row.getWorkStringEndMonth()} + ' ' {row.workEndYear}}"></td>
+                                                <td th:text="${row.getWorkTitle()}"></td>
+                                                <td th:text="${row.getWorkEmployer()}"></td>
+                                                <td th:text="${{row.getWorkStringStartMonth()} + ' ' ${row.getWorkStartYear()}"></td>
+                                                <td th:text="${row.getWorkStringEndMonth()}+ ' ' ${row.getWorkEndYear()}"></td>
 
                                             </tr>
                                         </table>
@@ -148,8 +148,8 @@
                                                 <th>Duty</th>
                                             </tr>
                                             <tr th:each="row : ${dutys}">
-                                                <td th:text="${row.dutyWorkTitle}"></td>
-                                                <td th:text="${row.dutyTitle}"></td>
+                                                <td th:text="${row.getDutyWorkTitle()}"></td>
+                                                <td th:text="${row.getDutyTitle()}"></td>
 
                                             </tr>
                                         </table>
@@ -177,8 +177,8 @@
                                 <th>Rating</th>
                             </tr>
                             <tr th:each="row : ${skills}">
-                                <td th:text="${edu.skillName}"></td>
-                                <td th:text="${row.skillRating}"></td>
+                                <td th:text="${row.getSkillName()}"></td>
+                                <td th:text="${row.getSkillRating()}"></td>
 
                             </tr>
                         </table>

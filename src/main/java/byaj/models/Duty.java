@@ -15,15 +15,14 @@ public class Duty {
     //@NotNull
     //@Min(1)
     private int dutyID;
-    @NotNull
-    @Size(min=2, max=100)
-    private String dutyTitle = "  ";
 
-    private String dutyWorkTitle = "  ";
+    private String dutyTitle;
+
+    private String dutyWorkTitle;
     @Column(columnDefinition="integer default -1")
-    private int dutyWork = -1;
+    private int dutyWork;
     @Column(columnDefinition="integer default -1")
-    private int dutyRes = -1;
+    private int dutyRes;
 
     public int getDutyID() {
         return dutyID;

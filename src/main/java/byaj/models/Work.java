@@ -15,26 +15,20 @@ public class Work {
     //@NotNull
     //@Min(1)
     private int workID;
-    @NotNull
-    @Size(min=2, max=100)
-    private String workTitle = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String workEmployer = "  ";
-    @NotNull
-    @Min(1)
-    private int workStartMonth = 1;
-    @NotNull
-    @Min(1)
-    private int workEndMonth = 1;
-    @NotNull
-    @Min(1)
-    private int workStartYear = 1;
-    @NotNull
-    @Min(1)
-    private int workEndYear = 1;
+
+    private String workTitle;
+
+    private String workEmployer;
+
+    private int workStartMonth;
+
+    private int workEndMonth;
+
+    private int workStartYear;
+
+    private int workEndYear;
     @Column(columnDefinition="integer default -1")
-    private int workRes = -1;
+    private int workRes;
 
 
 

@@ -15,17 +15,14 @@ public class Resume {
     //@NotNull
     //@Min(1)
     private int resID;
-    @NotNull
-    @Size(min=2, max=100)
-    private String resFirstName = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String resLastName = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String resEmail = "  ";
+
+    private String resFirstName;
+
+    private String resLastName;
+
+    private String resEmail;
     @Column(columnDefinition="integer default -1")
-    private int resUser = -1;
+    private int resUser;
     
 
     public int getResID() {

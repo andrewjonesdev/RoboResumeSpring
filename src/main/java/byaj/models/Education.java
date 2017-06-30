@@ -15,20 +15,16 @@ public class Education {
     //@NotNull
     //@Min(1)
     private int eduID;
-    @NotNull
-    @Size(min=2, max=100)
-    private String eduCourseOfStudy = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String eduDegree = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String eduSchool = "  ";
-    @NotNull
-    @Min(1)
-    private int eduGradYear = 1;
+
+    private String eduCourseOfStudy;
+
+    private String eduDegree;
+
+    private String eduSchool;
+
+    private int eduGradYear;
     @Column(columnDefinition="integer default -1")
-    private int eduRes = 1;
+    private int eduRes;
     
 
 

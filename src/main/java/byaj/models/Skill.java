@@ -15,14 +15,12 @@ public class Skill {
     //@NotNull
     //@Min(1)
     private int skillID;
-    @NotNull
-    @Size(min=2, max=100)
-    private String skillName = "  ";
-    @NotNull
-    @Size(min=2, max=100)
-    private String skillRating = "  ";
+
+    private String skillName;
+
+    private String skillRating;
     @Column(columnDefinition="integer default -1")
-    private int skillRes = -1;
+    private int skillRes;
 
 
     public int getSkillID() {
