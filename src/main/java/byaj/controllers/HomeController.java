@@ -228,7 +228,7 @@ public class HomeController {
     public String displayResume(Model model, Principal principal){
         model.addAttribute("resume", resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()));
         model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
-        model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearWorkEndMonthDesc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
+        model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
         //model.addAttribute("duties", dutyRepository.findAllByDutyWorkOrderByDutyTitleAsc(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID()));
         model.addAttribute("duties", dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));
         model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()));

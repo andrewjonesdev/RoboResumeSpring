@@ -18,7 +18,7 @@ public class Duty {
     @NotNull
     @Size(min=2, max=100)
     private String dutyTitle = "  ";
-    @Column(columnDefinition="varchar default 'hi'")
+
     private String dutyWorkTitle = "  ";
     @Column(columnDefinition="integer default -1")
     private int dutyWork = -1;

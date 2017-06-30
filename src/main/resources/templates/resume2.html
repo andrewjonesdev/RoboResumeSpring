@@ -135,8 +135,8 @@
                                             <tr th:each="row : ${works}">
                                                 <td th:text="${row.workTitle}"></td>
                                                 <td th:text="${work.workEmployer}"></td>
-                                                <td th:text="${{row.workStartMonth} + ' ' {row.workStartYear}}"></td>
-                                                <td th:text="${{row.workEndMonth} + ' ' {row.workEndYear}}"></td>
+                                                <td th:text="${{row.getWorkStringStartMonth()} + ' ' {row.workStartYear}}"></td>
+                                                <td th:text="${{row.getWorkStringEndMonth()} + ' ' {row.workEndYear}}"></td>
                                                 </td>
                                             </tr>
                                         </table>

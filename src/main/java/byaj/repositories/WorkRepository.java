@@ -12,5 +12,5 @@ import java.util.List;
 
 public interface WorkRepository extends CrudRepository<Work, Integer> {
     public Work findOneByWorkRes(int num);
-    public List<Work> findAllByWorkResOrderByWorkEndYearWorkEndMonthDesc(int num);
+    public List<Work> findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(int num);
 }
