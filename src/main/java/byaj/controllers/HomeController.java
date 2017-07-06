@@ -139,7 +139,7 @@ public class HomeController {
             model.addAttribute("message", "User Account Successfully Created");
         }
 
-        return "base";
+        return "base2";
     }
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
