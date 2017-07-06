@@ -34,6 +34,7 @@
             <ul class="nav navbar-nav">
                 <li sec:authorize="isAuthenticated()"><a href="/resume">Build Resume</a></li>
                 <li><a href="/resume">Show Employers</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/register">Register Today</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
