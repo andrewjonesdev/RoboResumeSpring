@@ -28,7 +28,7 @@ public class Work {
 
     private int workEndYear;
     
-    @Column(columnDefinition="varchar(max)")
+   @Lob
     private String workDuties;
     
     @Column(columnDefinition="integer default -1")
