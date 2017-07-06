@@ -44,8 +44,8 @@ public class HomeController {
     @Autowired
     private WorkRepository workRepository;
 
-    @Autowired
-    private DutyRepository dutyRepository;
+  //  @Autowired
+  //  private DutyRepository dutyRepository;
 
     @Autowired
     private SkillRepository skillRepository;
@@ -246,7 +246,7 @@ public class HomeController {
         return "redirect:/resume";
 
     }
-    @PostMapping(path = "/add/Duty")
+   /* @PostMapping(path = "/add/Duty")
     public String processDuty(@Valid Duty duty, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("duty");
@@ -258,7 +258,7 @@ public class HomeController {
         dutyRepository.save(duty);
         return "redirect:/resume";
 
-    }
+    }*/
 
     @PostMapping("/resume")
     public String finalizeResume(){
@@ -271,7 +271,10 @@ public class HomeController {
         model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(userRepository.findByUsername(principal.getName()).getId()));
         model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(userRepository.findByUsername(principal.getName()).getId()));
         //model.addAttribute("duties", dutyRepository.findAllByDutyWorkOrderByDutyTitleAsc(workRepository.findOneByWorkRes(resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getID()).getResID()).getWorkID()));
-        model.addAttribute("duties", dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(userRepository.findByUsername(principal.getName()).getId()));
+        //model.addAttribute("duties", dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(userRepository.findByUsername(principal.getName()).getId()));
+       // for(int count = 0; count<dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(userRepository.findByUsername(principal.getName()).getId()).size();count++) {
+      //      System.out.println(dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(userRepository.findByUsername(principal.getName()).getId()).get(count));
+      //  }
         model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(userRepository.findByUsername(principal.getName()).getId()));
         model.addAttribute("principal", principal);
 

@@ -27,6 +27,10 @@ public class Work {
     private int workStartYear;
 
     private int workEndYear;
+    
+    @Column(columnDefinition="varchar(max)")
+    private String workDuties;
+    
     @Column(columnDefinition="integer default -1")
     private int workRes;
 
@@ -92,6 +96,14 @@ public class Work {
 
     public void setWorkEndYear (int workEndYear) {
         this.workEndYear = workEndYear;
+    }
+
+    public String getWorkDuties() {
+        return workDuties;
+    }
+
+    public void setWorkDuties (String workDuties) {
+        this.workDuties = workDuties;
     }
 
     public int getWorkRes() {

@@ -110,7 +110,7 @@
                             <p class="category">Employment History</p>
                         </div>
 
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <div class="card">
                                 <div class="content content-full-width">
                                     <ul role="tablist" class="nav nav-tabs">
@@ -126,36 +126,38 @@
                                     </ul>
 
                                     <div class="tab-content">
-                                        <div id="icon-info" class="tab-pane active">
+                                        <div id="icon-info" class="tab-pane active">-->
                                             <table class="table table-striped">
                                                 <tr>
                                                     <th>Job Title</th>
                                                     <th>Employer</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
+                                                    <th>Duties</th>
                                                 </tr>
                                                 <tr th:each="row : ${works}">
                                                     <td th:text="${row.workTitle}"></td>
                                                     <td th:text="${row.workEmployer}"></td>
                                                     <td th:text="${row.getWorkStringStartMonth()} + ' ' +${row.workStartYear}"></td>
                                                     <td th:text="${row.getWorkStringEndMonth()}+ ' ' +${row.workEndYear}"></td>
+                                                    <td th:text="${row.workDuties}"></td>
 
                                                 </tr>
                                             </table>
-                                        </div>
-                                        <div id="icon-account" class="tab-pane">
-                                            <table class="table table-striped">
-                                                <tr>
-                                                    <th>Job</th>
-                                                    <th>Duty</th>
-                                                </tr>
-                                                <tr th:each="row : ${dutys}">
-                                                    <td th:text="${row.dutyWorkTitle}"></td>
-                                                    <td th:text="${row.dutyTitle}"></td>
+                                            <!--   </div>
+                                             <div id="icon-account" class="tab-pane">
+                                                  <table class="table table-striped">
+                                                      <tr>
+                                                          <th>Job</th>
+                                                          <th>Duty</th>
+                                                      </tr>
+                                                      <tr th:each="row : ${dutys}">
+                                                          <td th:text="${row.dutyWorkTitle}"></td>
+                                                          <td th:text="${row.dutyTitle}"></td>
 
-                                                </tr>
-                                            </table>
-                                        </div>
+                                                      </tr>
+                                                  </table>
+                                              </div>-->
 
                                     </div>
 

@@ -133,7 +133,7 @@
                             <p class="category">Employment History</p>
                         </div>
 
-                        <div class="col-md-6">
+                        <!--<div class="col-md-6">
                             <div class="card">
                                 <div class="content content-full-width">
                                     <ul role="tablist" class="nav nav-tabs">
@@ -147,7 +147,7 @@
                                     </ul>
 
                                     <div class="tab-content">
-                                        <div id="icon-info" class="tab-pane active">
+                                        <div id="icon-info" class="tab-pane active">-->
                                             <form th:action="@{/add/Work}" th:object="${work}" method="post">
                                                 <div class="form-group">
                                                     <label for="title">Job Title</label>
@@ -173,9 +173,13 @@
                                                     <label for="endYear">End Year</label>
                                                     <input type="number" class="form-control" id="endYear" placeholder="End Year" min="1920" max="2017" th:field="*{workEndYear}"/>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="duties">Duty</label>
+                                                    <textarea type="text" class="form-control" id="duties" placeholder="Duties" th:field="*{workDuties}"/>
+                                                </div>
                                                 <button type="submit" class="btn btn-default">Add</button>
                                             </form>
-                                        </div>
+                                       <!-- </div>
                                         <div id="icon-account" class="tab-pane">
                                             <form th:action="@{/add/Duty}" th:object="${duty}" method="post">
                                                 <div class="form-group">
@@ -184,7 +188,7 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-default">Add</button>
                                             </form>
-                                        </div>
+                                        </div>-->
 
                                     </div>
 
