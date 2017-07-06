@@ -58,14 +58,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
+       /* auth.inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER")
                 .and()
                 .withUser("dave").password("begreat").roles("USER")
                 .and()
                 .withUser("fi").password("becold").roles("USER")
                 .and()
-                .withUser("root").password("godofweb").roles("ADMIN");
+                .withUser("root").password("godofweb").roles("ADMIN");*/
         auth.userDetailsService(userDetailsServiceBean());
     }
 
