@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org " xmlns:sec="www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Little Black Book Resume Builder</title>
 
@@ -16,8 +16,6 @@
         <div class="row">
 
 
-
-
         </div>
 
 
@@ -25,7 +23,7 @@
             <h4 class="title text-center">Build Resume</h4>
             <br/>
             <div class="nav-container">
-                <ul class="nav nav-tabs" role="tablist" >
+                <ul class="nav nav-tabs" role="tablist">
                     <li class="active">
                         <a href="#description-logo" role="tab" data-toggle="tab">
                             <i class="fa fa-info-circle"></i><br/>
@@ -62,21 +60,21 @@
                         </div>
 
                         <div class="content">
-                           <!-- <form th:action="@{/add/Resume}" th:object="${resume}" method="post">
-                                <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="First Name" th:field="*{resFirstName}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:field="*{resLastName}"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{resEmail}"/>
-                                </div>
-                                <button type="submit" class="btn btn-default">Add</button>
-                            </form>-->
+                            <!-- <form th:action="@{/add/Resume}" th:object="${resume}" method="post">
+                                 <div class="form-group">
+                                     <label for="firstName">First Name</label>
+                                     <input type="text" class="form-control" id="firstName" placeholder="First Name" th:field="*{resFirstName}"/>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="lastName">Last Name</label>
+                                     <input type="text" class="form-control" id="lastName" placeholder="Last Name" th:field="*{resLastName}"/>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="email">Email</label>
+                                     <input type="email" class="form-control" id="email" placeholder="Email" th:field="*{resEmail}"/>
+                                 </div>
+                                 <button type="submit" class="btn btn-default">Add</button>
+                             </form>-->
 
                             <table class="table table-striped">
                                 <tr>
@@ -105,19 +103,24 @@
                             <form th:action="@{/add/Education}" th:object="${education}" method="post">
                                 <div class="form-group">
                                     <label for="courseOfStudy">Major</label>
-                                    <input type="text" class="form-control" id="courseOfStudy" placeholder="Major" th:field="*{eduCourseOfStudy}"/>
+                                    <input type="text" class="form-control" id="courseOfStudy" placeholder="Major"
+                                           th:field="*{eduCourseOfStudy}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="degree">Degree</label>
-                                    <input type="text" class="form-control" id="degree" placeholder="Degree" th:field="*{eduDegree}"/>
+                                    <input type="text" class="form-control" id="degree" placeholder="Degree"
+                                           th:field="*{eduDegree}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="school">School</label>
-                                    <input type="text" class="form-control" id="school" placeholder="School" th:field="*{eduSchool}"/>
+                                    <input type="text" class="form-control" id="school" placeholder="School"
+                                           th:field="*{eduSchool}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="gradYear">Graduation Year</label>
-                                    <input type="number" class="form-control" id="gradYear" placeholder="Graduation Year" min="1920" max="2020" th:field="*{eduGradYear}"/>
+                                    <input type="number" class="form-control" id="gradYear"
+                                           placeholder="Graduation Year" min="1920" max="2020"
+                                           th:field="*{eduGradYear}"/>
                                 </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
@@ -133,67 +136,45 @@
                             <p class="category">Employment History</p>
                         </div>
 
-                        <!--<div class="col-md-6">
-                            <div class="card">
-                                <div class="content content-full-width">
-                                    <ul role="tablist" class="nav nav-tabs">
-                                        <li role="presentation" class="active">
-                                            <a href="#icon-info" data-toggle="tab"><i class="fa fa-info"></i> Workplace History</a>
-                                        </li>
-                                        <li>
-                                            <a href="#icon-account" data-toggle="tab"><i class="fa fa-user"></i> Workplace Duties</a>
-                                        </li>
-
-                                    </ul>
-
-                                    <div class="tab-content">
-                                        <div id="icon-info" class="tab-pane active">-->
-                                            <form th:action="@{/add/Work}" th:object="${work}" method="post">
-                                                <div class="form-group">
-                                                    <label for="title">Job Title</label>
-                                                    <input type="text" class="form-control" id="title" placeholder="Job Title" th:field="*{workTitle}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="employer">Employer</label>
-                                                    <input type="text" class="form-control" id="employer" placeholder="Employer" th:field="*{workEmployer}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="startMonth">Start Month </label>
-                                                    <input type="number" class="form-control" id="startMonth" placeholder="Start Month" min="1" max="12" th:field="*{workStartMonth}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="startYear">Start Year</label>
-                                                    <input type="number" class="form-control" id="startYear" placeholder="Start Year" min="1920" max="2017" th:field="*{workStartYear}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="endMonth">End Month </label>
-                                                    <input type="number" class="form-control" id="endMonth" placeholder="End Month" min="1" max="12" th:field="*{workEndMonth}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="endYear">End Year</label>
-                                                    <input type="number" class="form-control" id="endYear" placeholder="End Year" min="1920" max="2017" th:field="*{workEndYear}"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="duties">Duty</label>
-                                                    <textarea type="text" class="form-control" id="duties" placeholder="Duties" th:field="*{workDuties}"/>
-                                                </div>
-                                                <button type="submit" class="btn btn-default">Add</button>
-                                            </form>
-                                       <!-- </div>
-                                        <div id="icon-account" class="tab-pane">
-                                            <form th:action="@{/add/Duty}" th:object="${duty}" method="post">
-                                                <div class="form-group">
-                                                    <label for="duty">Duty</label>
-                                                    <input type="text" class="form-control" id="duty" placeholder="Duty" th:field="*{dutyTitle}"/>
-                                                </div>
-                                                <button type="submit" class="btn btn-default">Add</button>
-                                            </form>
-                                        </div>
-
-                                    </div>-->
-
+                        <div class="content">
+                            <form th:action="@{/add/Work}" th:object="${work}" method="post">
+                                <div class="form-group">
+                                    <label for="title">Job Title</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Job Title"
+                                           th:field="*{workTitle}"/>
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="employer">Employer</label>
+                                    <input type="text" class="form-control" id="employer" placeholder="Employer"
+                                           th:field="*{workEmployer}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startMonth">Start Month </label>
+                                    <input type="number" class="form-control" id="startMonth" placeholder="Start Month"
+                                           min="1" max="12" th:field="*{workStartMonth}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startYear">Start Year</label>
+                                    <input type="number" class="form-control" id="startYear" placeholder="Start Year"
+                                           min="1920" max="2017" th:field="*{workStartYear}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="endMonth">End Month </label>
+                                    <input type="number" class="form-control" id="endMonth" placeholder="End Month"
+                                           min="1" max="12" th:field="*{workEndMonth}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="endYear">End Year</label>
+                                    <input type="number" class="form-control" id="endYear" placeholder="End Year"
+                                           min="1920" max="2017" th:field="*{workEndYear}"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="duties">Duty</label>
+                                    <textarea type="text" class="form-control" id="duties" placeholder="Duties"
+                                              th:field="*{workDuties}"/>
+                                </div>
+                                <button type="submit" class="btn btn-default">Add</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -209,11 +190,13 @@
                             <form th:action="@{/add/Skill}" th:object="${skill}" method="post">
                                 <div class="form-group">
                                     <label for="skill">Skill</label>
-                                    <input type="text" class="form-control" id="skill" placeholder="Skill" th:field="*{skillName}"/>
+                                    <input type="text" class="form-control" id="skill" placeholder="Skill"
+                                           th:field="*{skillName}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="rating">Rating</label>
-                                    <input type="text" class="form-control" id="rating" placeholder="Rating" th:field="*{skillRating}"/>
+                                    <input type="text" class="form-control" id="rating" placeholder="Rating"
+                                           th:field="*{skillRating}"/>
                                 </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
