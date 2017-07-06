@@ -100,6 +100,7 @@
                         </div>
 
                         <div class="content">
+
                             <form th:action="@{/add/Education}" th:object="${education}" method="post">
                                 <div class="form-group">
                                     <label for="courseOfStudy">Major</label>
@@ -124,6 +125,22 @@
                                 </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
+                            
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Major</th>
+                                    <th>Degree</th>
+                                    <th>School</th>
+                                    <th>Graduation Year</th>
+                                </tr>
+                                <tr th:each="row : ${edus}">
+                                    <td th:text="${row.eduCourseOfStudy}"></td>
+                                    <td th:text="${row.eduDegree}"></td>
+                                    <td th:text="${row.eduSchool}"></td>
+                                    <td th:text="${row.eduGradYear}"></td>
+
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -137,6 +154,7 @@
                         </div>
 
                         <div class="content">
+
                             <form th:action="@{/add/Work}" th:object="${work}" method="post">
                                 <div class="form-group">
                                     <label for="title">Job Title</label>
@@ -175,6 +193,24 @@
                                 </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Job Title</th>
+                                    <th>Employer</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Duties</th>
+                                </tr>
+                                <tr th:each="row : ${works}">
+                                    <td th:text="${row.workTitle}"></td>
+                                    <td th:text="${row.workEmployer}"></td>
+                                    <td th:text="${row.getWorkStringStartMonth()} + ' ' +${row.workStartYear}"></td>
+                                    <td th:text="${row.getWorkStringEndMonth()}+ ' ' +${row.workEndYear}"></td>
+                                    <td th:text="${row.workDuties}"></td>
+
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -200,6 +236,18 @@
                                 </div>
                                 <button type="submit" class="btn btn-default">Add</button>
                             </form>
+
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Skill</th>
+                                    <th>Rating</th>
+                                </tr>
+                                <tr th:each="row : ${skills}">
+                                    <td th:text="${row.skillName}"></td>
+                                    <td th:text="${row.skillRating}"></td>
+
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>

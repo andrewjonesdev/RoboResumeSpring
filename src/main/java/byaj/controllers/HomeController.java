@@ -143,7 +143,7 @@ public class HomeController {
     }
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
-        model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
+       // model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
         /*if(userRepository.findOneByUsername(principal.getName()).getUserResume() ==-1) {
             Resume resume = new Resume();
             model.addAttribute("resume", resume);
@@ -156,9 +156,14 @@ public class HomeController {
         else{
             model.addAttribute("resume", resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getId()));
         }*/
+        model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
+        model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(userRepository.findByUsername(principal.getName()).getId()));
+        model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(userRepository.findByUsername(principal.getName()).getId()));
+        model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(userRepository.findByUsername(principal.getName()).getId()));
+        model.addAttribute("principal", principal);
         model.addAttribute("education", new Education());
         model.addAttribute("work", new Work());
-        model.addAttribute("duty", new Duty());
+       // model.addAttribute("duty", new Duty());
         model.addAttribute("skill", new Skill());
         return "form2";
     }
