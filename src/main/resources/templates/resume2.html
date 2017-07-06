@@ -64,8 +64,8 @@
                                 <th>Email</th>
                             </tr>
                             <tr th:object="${resume}">
-                                <td th:text="${resume.resFirstName}+ ' ' + ${resume.resLastName}"></td>
-                                <td th:text="${resume.resEmail}"></td>
+                                <td th:text="${resume.firstName}+ ' ' + ${resume.lastName}"></td>
+                                <td th:text="${resume.email}"></td>
 
                             </tr>
                         </table>
