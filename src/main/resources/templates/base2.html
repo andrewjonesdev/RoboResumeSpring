@@ -39,26 +39,24 @@
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
             <form class="navbar-form navbar-left" th:action="@{/search}" th:object="${search}" method="post">
-              <ul class="navbar-form navbar-left">
-               <li><a href="#"><div class="form-group">
+                <a href="#"><div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" th:field="*{searchValue}"/>
-               </div></a></li>
+                </div></a>
                 <div class="radio">
-                    <li><a href="#"><label>
+                    <a href="#"><label>
                         <input type="radio" name="radio" id="radio1" value="person" aria-label="Person" th:field="*{searchType}"/>
                         Person
-                    </label></a></li>
-                    <li><a href="#"><label>
+                    </label></a>
+                    <a href="#"><label>
                         <input type="radio" name="radio" id="radio2" value="company" aria-label="Company" th:field="*{searchType}"/>
                         Company
-                    </label></a></li>
+                    </label></a>
                     <a href="#"> <label>
                         <input type="radio" name="radio" id="radio3" value="school" aria-label="School" th:field="*{searchType}"/>
                         School
                     </label></a>
                 </div>
-                 <button type="submit" class="btn btn-default">Submit</button>
-              </ul>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class="icon-bar" sec:authorize="isAuthenticated()"><a href="#">Welcome, <span sec:authentication="principal.authorities">ROLE_USER, ROLE_ADMIN</span> <span sec:authentication="name">...</span></a></li>
