@@ -297,10 +297,10 @@ public class HomeController {
     @PostMapping("/generate/job")
     public String displaySearchedRJob(JobBuilder jb, BindingResult bindingResult, Model model, Principal principal){
         model.addAttribute("search", new Search());
-        model.addAttribute("jobs", jobRepository.findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(Integer.parseInt(jb.getJbValue())));
+        model.addAttribute("job", jobRepository.findOneByJobID(Integer.parseInt(jb.getJbValue())));
         model.addAttribute("principal", principal);
 
-        return "job2";
+        return "displayjob2";
     }
 
     @GetMapping("/add")

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:th="www.thymeleaf.org"
+         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Little Black Book Job Post</title>
+    <th:block th:replace="base2 :: head"></th:block>
+</head>
+<body>
+<th:block th:replace="base2 :: nav"></th:block>
+
+<div class="container">
+    <br /><br /><br />
+    <h4>Job Post</h4>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Job Title</th>
+            <th>Employer</th>
+            <th>Start Date</th>
+            <th>Salary Range</th>
+            <th>Duties</th>
+        </tr>
+        <tr th:object="${job}">
+            <td th:text="${job.jobTitle}"></td>
+            <td th:text="${job.jobEmployer}"></td>
+            <td th:text="${job.getJobStringStartMonth()} + ' ' +${job.jobStartYear}"></td>
+            <td th:text="'$'+${job.jobMinSalary}+ '-' +'$'+${job.jobMaxSalary}"></td>
+            <td th:text="${job.jobDuties}"></td>
+
+        </tr>
+    </table>
+
+</div><!-- /.container -->
+
+<th:block th:replace="base2 :: footlinks"></th:block>
+</body>
+</html>

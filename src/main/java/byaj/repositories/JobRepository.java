@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface JobRepository extends CrudRepository<Job, Integer> {
     public Job findOneByJobRes(int num);
+    public Job findOneByJobID(int num);
     public Job findTopByJobRes(int num);
     public List<Job> findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(int num);
     public List <Job> findAllByOrderByJobTitleAscJobEmployerAsc();
