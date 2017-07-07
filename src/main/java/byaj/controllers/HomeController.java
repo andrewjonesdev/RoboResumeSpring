@@ -50,8 +50,15 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @Autowired
+    private SearchRepository searchRepository;
+
+    @Autowired
+    private ResumeBuilderRepository rbRepository;
+
     @RequestMapping("/")
-    public String home(){
+    public String home(Model model){
+        model.addAttribute("search", new Search());
         return "base2";
     }
 /*    @GetMapping("/register")
@@ -122,12 +129,14 @@ public class HomeController {
     }*/
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String showRegistrationPage(Model model){
+        model.addAttribute("search", new Search());
         model.addAttribute("user", new User());
         return "register2";
     }
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
+        model.addAttribute("search", new Search());
 
         model.addAttribute("user", user);
         userValidator.validate(user, result);
@@ -143,6 +152,7 @@ public class HomeController {
     }
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
+        model.addAttribute("search", new Search());
        // model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
         /*if(userRepository.findOneByUsername(principal.getName()).getUserResume() ==-1) {
             Resume resume = new Resume();
@@ -170,7 +180,8 @@ public class HomeController {
     }
 
     @RequestMapping("/login")
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("search", new Search());
         return "login2";
     }
 
@@ -221,7 +232,6 @@ public class HomeController {
             System.out.println("education");
             return "redirect:/resume";
         }
-
         education.setEduRes(userRepository.findByUsername(principal.getName()).getId());
         educationRepository.save(education);
         return "redirect:/resume";
@@ -273,6 +283,7 @@ public class HomeController {
 
     @GetMapping("/myresume")
     public String displayResume(Model model, Principal principal){
+        model.addAttribute("search", new Search());
         model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
         model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(userRepository.findByUsername(principal.getName()).getId()));
         model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(userRepository.findByUsername(principal.getName()).getId()));
@@ -282,6 +293,53 @@ public class HomeController {
       //      System.out.println(dutyRepository.findAllByDutyResOrderByDutyWorkAscDutyTitleAsc(userRepository.findByUsername(principal.getName()).getId()).get(count));
       //  }
         model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(userRepository.findByUsername(principal.getName()).getId()));
+        model.addAttribute("principal", principal);
+
+        return "resume2";
+    }
+
+    @PostMapping("/search")
+    public String searchForResumes(Search search, BindingResult bindingResult, Principal principal, Model model){
+        if (bindingResult.hasErrors()) {
+            System.out.println("search");
+            return "redirect:/";
+        }
+        model.addAttribute("search", new Search());
+        model.addAttribute("rb", new ResumeBuilder());
+        search.setSearchRes(userRepository.findByUsername(principal.getName()).getId());
+        searchRepository.save(search);
+        if(search.getSearchType().toLowerCase().equals("person")){
+            model.addAttribute("results", userRepository.findAllByFullNameOrderByIdAsc(search.getSearchValue()));
+            return "searchResults2";
+        }
+        if(search.getSearchType().toLowerCase().equals("company")){
+                ArrayList<User> result = new ArrayList();
+                List<Work> comp = workRepository.findAllByWorkEmployerOrderByWorkResAsc(search.getSearchValue());
+                for (int count = 0; count< comp.size(); count++){
+                result.add(userRepository.findById(comp.get(count).getWorkRes()));
+                }
+            model.addAttribute("results", result);
+            return "searchResults2";
+        }
+        if(search.getSearchType().toLowerCase().equals("school")){
+            ArrayList<User> result = new ArrayList();
+            List<Education> comp = educationRepository.findAllByEduSchoolOrderByEduResAsc(search.getSearchValue());
+            for (int count = 0; count< comp.size(); count++){
+                result.add(userRepository.findById(comp.get(count).getEduRes()));
+            }
+            model.addAttribute("results", result);
+            return "searchResults2";
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/generate")
+    public String displaySearchedResume(ResumeBuilder rb, BindingResult bindingResult, Model model, Principal principal){
+        model.addAttribute("search", new Search());
+        model.addAttribute("resume", userRepository.findById(Integer.parseInt(rb.getRbValue())));
+        model.addAttribute("edus", educationRepository.findAllByEduResOrderByEduGradYearDesc(userRepository.findById(Integer.parseInt(rb.getRbValue())).getId()));
+        model.addAttribute("works", workRepository.findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(userRepository.findById(Integer.parseInt(rb.getRbValue())).getId()));
+        model.addAttribute("skills", skillRepository.findAllBySkillResOrderBySkillNameAsc(userRepository.findById(Integer.parseInt(rb.getRbValue())).getId()));
         model.addAttribute("principal", principal);
 
         return "resume2";

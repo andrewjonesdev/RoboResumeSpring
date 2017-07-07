@@ -14,5 +14,5 @@ public interface WorkRepository extends CrudRepository<Work, Integer> {
     public Work findOneByWorkRes(int num);
     public Work findTopByWorkRes(int num);
     public List<Work> findAllByWorkResOrderByWorkEndYearDescWorkEndMonthDesc(int num);
-
+    public List<Work> findAllByWorkEmployerOrderByWorkResAsc(String employer);
 }

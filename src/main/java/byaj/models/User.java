@@ -34,6 +34,9 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "full_name")
+    private String fullName;
+
     @Column(name = "enabled")
     private boolean enabled = true;
 
@@ -51,6 +54,8 @@ public class User {
         this.lastName = lastName;
         this.enabled = enabled;
         this.username = username;
+        fullName = firstName + " " + lastName;
+
     }
 
     public User() {
@@ -100,6 +105,7 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+        fullName = firstName + lastName;
     }
 
     public String getLastName() {
@@ -108,6 +114,11 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+        fullName = firstName + lastName;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public boolean isEnabled() {

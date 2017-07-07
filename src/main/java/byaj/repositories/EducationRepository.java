@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface EducationRepository extends CrudRepository<Education, Integer> {
 public List<Education> findAllByEduResOrderByEduGradYearDesc(int num);
+public List<Education> findAllByEduSchoolOrderByEduResAsc(String school);
 }
