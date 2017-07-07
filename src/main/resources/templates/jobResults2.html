@@ -30,7 +30,7 @@
             <td th:text="${row.getJobStringStartMonth()} + ' ' +${row.jobStartYear}"></td>
             <td th:text="'$'+${row.jobMinSalary}+ '-' +'$'+${row.jobMaxSalary}"></td>
             <td th:text="${row.jobDuties}"></td>
-            <td><form class="form-inline" th:action="@{/generate/Job}" th:object="${jb}" method="post">
+            <td><form class="form-inline" th:action="@{/generate/job}" th:object="${jb}" method="post">
                 <div class="radio">
                     <label>
                         <input type="radio" name="blankRadio" id="blankRadio1" th:value="${row.jobRes}" th:field="*{jbValue}" aria-label="..."/>

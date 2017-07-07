@@ -126,7 +126,7 @@ public class HomeController {
         return "login2";
     }
 
-    @PostMapping(path = "/add/Education")
+    @PostMapping(path = "/add/education")
     public String processEducation(@Valid Education education, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("education");
@@ -138,7 +138,7 @@ public class HomeController {
 
     }
     
-    @PostMapping(path = "/add/Skill")
+    @PostMapping(path = "/add/skill")
     public String processSkill(@Valid Skill skill, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("skill");
@@ -151,7 +151,7 @@ public class HomeController {
     }
 
 
-    @PostMapping(path = "/add/Work")
+    @PostMapping(path = "/add/work")
     public String processWork(@Valid Work work, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("work");
@@ -162,7 +162,7 @@ public class HomeController {
         return "redirect:/resume";
 
     }
-   /* @PostMapping(path = "/add/Duty")
+   /* @PostMapping(path = "/add/duty")
     public String processDuty(@Valid Duty duty, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("duty");
@@ -250,7 +250,7 @@ public class HomeController {
 
     }
 
-    @PostMapping("/generate/Resume")
+    @PostMapping("/generate/resume")
     public String displaySearchedResume(ResumeBuilder rb, BindingResult bindingResult, Model model, Principal principal){
         model.addAttribute("search", new Search());
         model.addAttribute("resume", userRepository.findById(Integer.parseInt(rb.getRbValue())));
@@ -293,7 +293,7 @@ public class HomeController {
 
     }
 
-    @PostMapping("/generate/Job")
+    @PostMapping("/generate/job")
     public String displaySearchedRJob(JobBuilder jb, BindingResult bindingResult, Model model, Principal principal){
         model.addAttribute("search", new Search());
         model.addAttribute("jobs", jobRepository.findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(Integer.parseInt(jb.getJbValue())));

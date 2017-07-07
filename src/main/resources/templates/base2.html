@@ -34,8 +34,8 @@
             <ul class="nav navbar-nav">
                 <li sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')"><a href="/resume">Build Resume</a></li>
                 <li sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')"><a href="/job">Add Job</a></li>
-                <li sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')"><a href="/all/Resumes">Show Resumes</a></li>
-                <li sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')"><a href="/all/Jobs">Show Jobs</a></li>
+                <li sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')"><a href="/all/resumes">Show Resumes</a></li>
+                <li sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')"><a href="/all/jobs">Show Jobs</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/register">Register Today</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
