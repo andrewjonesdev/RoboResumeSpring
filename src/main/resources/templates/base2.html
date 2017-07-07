@@ -38,7 +38,7 @@
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
-            <form class="navbar-form navbar-left" sec:authorize="hasAuthority('USER')" th:action="@{/search}" th:object="${search}" method="post">
+            <form class="navbar-form navbar-left" sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')" th:action="@{/search}" th:object="${search}" method="post">
                 <a href="#"><div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" th:field="*{searchValue}"/>
                 </div></a>
@@ -47,11 +47,11 @@
                         <input type="radio" name="radio" id="radio1" value="person" aria-label="Person" th:field="*{searchType}"/>
                         Person
                     </label></a>
-                    <a sec:authorize="hasAuthority('EMPLOYER')" href="#"><label>
+                    <a sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')" href="#"><label>
                         <input type="radio" name="radio" id="radio2" value="company" aria-label="Company" th:field="*{searchType}"/>
                         Company
                     </label></a>
-                    <a sec:authorize="hasAuthority('EMPLOYER')" href="#"> <label>
+                    <a sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')" href="#"> <label>
                         <input type="radio" name="radio" id="radio3" value="school" aria-label="School" th:field="*{searchType}"/>
                         School
                     </label></a>
