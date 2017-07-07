@@ -105,7 +105,7 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-        fullName = firstName + lastName;
+        fullName = firstName + " " + lastName;
     }
 
     public String getLastName() {
@@ -114,7 +114,7 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-        fullName = firstName + lastName;
+        fullName = firstName + " " + lastName;
     }
 
     public String getFullName() {
