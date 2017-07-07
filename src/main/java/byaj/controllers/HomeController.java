@@ -158,7 +158,7 @@ public class HomeController {
             if (user.getRoleSettings().toUpperCase().equals("USER")) {
                 //user.setRoles(Arrays.asList(userRole));
                 //userRepository.save(user);
-                userService.saveAdmin(user);
+                userService.saveUser(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
         //roleRepository.save(new Role("USER"));
