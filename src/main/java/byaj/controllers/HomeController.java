@@ -65,72 +65,7 @@ public class HomeController {
         model.addAttribute("search", new Search());
         return "base2";
     }
-/*    @GetMapping("/register")
-    public String register(Model model){
-        model.addAttribute("resFirstName", new String());
-        model.addAttribute("resLastName", new String());
-        model.addAttribute("resEmail", new String());
-        model.addAttribute("username", new String());
-        model.addAttribute("password", new String());
-        model.addAttribute("role", new String());
 
-        return "register2";
-    }
-    @PostMapping("/register")
-    public String registering(@RequestParam("resFirstName") String resFirstName,
-                           @RequestParam("resLastName") String resLastName,
-                           @RequestParam("resEmail") String resEmail,
-                           @RequestParam("username") String username,
-                           @RequestParam("password") String password,
-                           @RequestParam("role") String theRole,
-                           Model model){
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        Role role = new Role();
-        role.setRole(theRole);
-        Resume resume = new Resume();
-        resume.setResFirstName(resFirstName);
-        resume.setResLastName(resLastName);
-        resume.setResEmail(resEmail);
-
-        userRepository.save(user);
-        resumeRepository.save(resume);
-        roleRepository.save(role);
-
-        userRepository.findOneByUsername(user.getUsername()).setUserResume(resume.getResID());
-        userRepository.save(userRepository.findOneByUsername(user.getUsername()));
-
-        resume.setResUser(userRepository.findOneByUsername(user.getUsername()).getId());
-        resumeRepository.save(resume);
-        return "login2";
-    }*/
-
-    /*@PostMapping("/register")
-    public String newUser(){
-        if (userBindingResult.hasErrors()) {
-            System.out.println("user");
-            return "register";
-        }
-        if (resBindingResult.hasErrors()) {
-            System.out.println("resume");
-            return "register";
-        }
-        if (roleBindingResult.hasErrors()) {
-            System.out.println("role");
-            return "register";
-        }
-        userRepository.save(user);
-        resumeRepository.save(resume);
-        roleRepository.save(role);
-
-        userRepository.findOneByUsername(user.getUsername()).setUserResume(resume.getResID());
-        userRepository.save(userRepository.findOneByUsername(user.getUsername()));
-
-        resume.setResUser(userRepository.findOneByUsername(user.getUsername()).getID());
-        resumeRepository.save(resume);
-        return "login";
-    }*/
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String showRegistrationPage(Model model){
         model.addAttribute("search", new Search());
@@ -164,14 +99,6 @@ public class HomeController {
                 userService.saveUser(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
-        //roleRepository.save(new Role("USER"));
-        //roleRepository.save(new Role("EMPLOYER"));
-        //roleRepository.save(new Role("ADMIN"));
-
-        //Role adminRole = roleRepository.findByRole("ADMIN");
-        //Role employerRole = roleRepository.findByRole("EMPLOYER");
-        //Role userRole = roleRepository.findByRole("USER");
-
 
         }
         return "redirect:/";
@@ -179,19 +106,7 @@ public class HomeController {
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
         model.addAttribute("search", new Search());
-       // model.addAttribute("resume", userRepository.findOneByUsername(principal.getName()));
-        /*if(userRepository.findOneByUsername(principal.getName()).getUserResume() ==-1) {
-            Resume resume = new Resume();
-            model.addAttribute("resume", resume);
-            userRepository.findOneByUsername(principal.getName()).setUserResume(resume.getResID());
-            userRepository.save(userRepository.findOneByUsername(principal.getName()));
-            
-            resume.setResUser(userRepository.findOneByUsername(principal.getName()).getId());
-            resumeRepository.save(resume);
-        }
-        else{
-            model.addAttribute("resume", resumeRepository.findOneByResUser(userRepository.findOneByUsername(principal.getName()).getId()));
-        }*/
+
         model.addAttribute("education", new Education());
         model.addAttribute("work", new Work());
         // model.addAttribute("duty", new Duty());
@@ -210,47 +125,6 @@ public class HomeController {
         model.addAttribute("search", new Search());
         return "login2";
     }
-
-
-    /*@GetMapping("/add")
-    public String getRooms(Model model){
-        model.addAttribute(new TransactionATM());
-        model.addAttribute("items", transactionATMRepository.findAllByOrderByTranDateDesc());
-        return "result";
-    }
-
-    @GetMapping("/user")
-    public String getReddit(Model model, Principal principal){
-
-        model.addAttribute("items", transactionATMRepository.findAllByTranUserOrderByTranDateDesc(Integer.parseInt(principal.getName())));
-        return "byuser";
-    }
-
-    @PostMapping("/add")
-    public String processTransaction(@Valid TransactionATM transactionATM, BindingResult bindingResult, Userount user, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            System.out.println("two");
-            return "redirect:/";
-        }
-
-        userRepository.save(user);
-        transactionATMRepository.save(transactionATM);
-        return "redirect:/user";
-
-    }*/
-
-    /*@PostMapping(path = "/add/Resume")
-    public String processResume(@Valid Resume resume, BindingResult bindingResult, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            System.out.println("resume");
-            return "redirect:/resume";
-        }
-
-
-        resumeRepository.save(resume);
-        return "redirect:/resume";
-
-    }*/
 
     @PostMapping(path = "/add/Education")
     public String processEducation(@Valid Education education, BindingResult bindingResult, Principal principal) {
