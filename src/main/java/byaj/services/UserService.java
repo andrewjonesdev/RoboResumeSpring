@@ -39,6 +39,12 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void saveEmployer(User user) {
+        user.setRoles(Arrays.asList(roleRepository.findByRole("Employer")));
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+
     public void saveAdmin(User user) {
         user.setRoles(Arrays.asList(roleRepository.findByRole("ADMIN")));
         user.setEnabled(true);

@@ -148,27 +148,30 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
-        roleRepository.save(new Role("USER"));
-        roleRepository.save(new Role("EMPLOYER"));
-        roleRepository.save(new Role("ADMIN"));
+        //roleRepository.save(new Role("USER"));
+        //roleRepository.save(new Role("EMPLOYER"));
+        //roleRepository.save(new Role("ADMIN"));
 
-        Role adminRole = roleRepository.findByRole("ADMIN");
-        Role employerRole = roleRepository.findByRole("EMPLOYER");
-        Role userRole = roleRepository.findByRole("USER");
+        //Role adminRole = roleRepository.findByRole("ADMIN");
+        //Role employerRole = roleRepository.findByRole("EMPLOYER");
+        //Role userRole = roleRepository.findByRole("USER");
 
         if (user.getRoleSettings().toUpperCase().equals("ADMIN")) {
-            user.setRoles(Arrays.asList(adminRole));
-            userRepository.save(user);
+            //user.setRoles(Arrays.asList(adminRole));
+            //userRepository.save(user);
+            userService.saveAdmin(user);
         }
         if (user.getRoleSettings().toUpperCase().equals("EMPLOYER")) {
-            user.setRoles(Arrays.asList(employerRole));
-            userRepository.save(user);
+            //user.setRoles(Arrays.asList(employerRole));
+            //userRepository.save(user);
+            userService.saveEmployer(user);
         }
         if (user.getRoleSettings().toUpperCase().equals("USER")) {
-            user.setRoles(Arrays.asList(userRole));
-            userRepository.save(user);
+            //user.setRoles(Arrays.asList(userRole));
+            //userRepository.save(user);
+            userService.saveAdmin(user);
         }
-        return "base2";
+        return "redirect:/";
     }
     @GetMapping("/resume")
     public String newResume(Model model, Principal principal){
