@@ -245,7 +245,7 @@ public class HomeController {
         model.addAttribute("search", new Search());
         model.addAttribute("rb", new ResumeBuilder());
 
-            model.addAttribute("results", userRepository.findAllOrOrderByLastNameAndFirstName());
+            model.addAttribute("results", userRepository.findAllOrderByLastNameOrderByFirstName());
             return "searchResults2";
 
     }
