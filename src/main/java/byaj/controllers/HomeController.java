@@ -57,6 +57,9 @@ public class HomeController {
     @Autowired
     private ResumeBuilderRepository rbRepository;
 
+    @Autowired
+    private JobRepository jobRepository;
+
     @RequestMapping("/")
     public String home(Model model){
         model.addAttribute("search", new Search());
@@ -353,10 +356,27 @@ public class HomeController {
             model.addAttribute("results", result);
             return "searchResults2";
         }
+        if(search.getSearchType().toLowerCase().equals("jobtitle")){
+            ArrayList<User> job = new ArrayList();
+            List<Job> comp = jobRepository.findAllByJobTitleOrdeOrderByJobStartYearDescOrderByStartMonthDesc(search.getSearchValue());
+            model.addAttribute("jobs", job);
+            return "jobResults2";
+        }
         return "redirect:/";
     }
 
-    @PostMapping("/generate")
+    @GetMapping("/all/resumes")
+    public String allResumes( Principal principal, Model model){
+
+        model.addAttribute("search", new Search());
+        model.addAttribute("rb", new ResumeBuilder());
+
+            model.addAttribute("results", userRepository.findAllOrderByLastNameOrderByFirstName());
+            return "searchResults2";
+
+    }
+
+    @PostMapping("/generate/Resume")
     public String displaySearchedResume(ResumeBuilder rb, BindingResult bindingResult, Model model, Principal principal){
         model.addAttribute("search", new Search());
         model.addAttribute("resume", userRepository.findById(Integer.parseInt(rb.getRbValue())));
@@ -368,4 +388,53 @@ public class HomeController {
         return "resume2";
     }
 
+    @GetMapping("/job")
+    public String newJob(Model model, Principal principal) {
+        model.addAttribute("search", new Search());
+        model.addAttribute("job", new Job());
+        model.addAttribute("jobs", jobRepository.findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(userRepository.findByUsername(principal.getName()).getId()));
+        return "job2";
+    }
+
+    @PostMapping(path = "/job")
+    public String processJob(@Valid Job job, BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("job");
+            return "redirect:/job";
+        }
+        job.setJobRes(userRepository.findByUsername(principal.getName()).getId());
+        jobRepository.save(job);
+        return "redirect:/job";
+
+    }
+
+    @GetMapping("/all/jobs")
+    public String allJobs( Principal principal, Model model){
+
+        model.addAttribute("search", new Search());
+        model.addAttribute("jb", new JobBuilder());
+
+        model.addAttribute("jobs", jobRepository.findAllOrderByJobTitleOrderByJobEmployer());
+        return "jobResults2";
+
+    }
+
+    @PostMapping("/generate/Job")
+    public String displaySearchedRJob(JobBuilder jb, BindingResult bindingResult, Model model, Principal principal){
+        model.addAttribute("search", new Search());
+        model.addAttribute("jobs", jobRepository.findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(Integer.parseInt(jb.getJbValue())));
+        model.addAttribute("principal", principal);
+
+        return "job2";
+    }
+
+    @GetMapping("/add")
+    public String redirectAdd(){
+        return "redirect:/";
+    }
+
+    @GetMapping("/all")
+    public String redirectAll(){
+        return "redirect:/";
+    }
 }

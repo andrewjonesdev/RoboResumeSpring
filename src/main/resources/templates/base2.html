@@ -32,8 +32,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a href="/resume">Build Resume</a></li>
-                <li><a href="/resume">Show Employers</a></li>
+                <li sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')"><a href="/resume">Build Resume</a></li>
+                <li sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')"><a href="/job">Add Job</a></li>
+                <li sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')"><a href="/all/Resumes">Show Resumes</a></li>
+                <li sec:authorize="hasAnyAuthority('USER', 'EMPLOYER', 'ADMIN')"><a href="/all/Jobs">Show Jobs</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/register">Register Today</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
@@ -54,6 +56,10 @@
                     <a sec:authorize="hasAnyAuthority('EMPLOYER', 'ADMIN')" href="#"> <label>
                         <input type="radio" name="radio" id="radio3" value="school" aria-label="School" th:field="*{searchType}"/>
                         School
+                    </label></a>
+                    <a sec:authorize="hasAnyAuthority('User', 'EMPLOYER', 'ADMIN')" href="#"> <label>
+                        <input type="radio" name="radio" id="radio4" value="jobtitle" aria-label="Job" th:field="*{searchType}"/>
+                        Job
                     </label></a>
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
