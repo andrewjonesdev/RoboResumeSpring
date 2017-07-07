@@ -37,6 +37,9 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
 
+    @Column(name = "role_settings")
+    private String roleSettings;
+
     @Column(name = "enabled")
     private boolean enabled = true;
 
@@ -143,6 +146,14 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getRoleSettings() {
+        return roleSettings;
+    }
+
+    public void setRoleSettings(String roleSettings) {
+        this.roleSettings = roleSettings;
     }
 
     public int getUserResume() {

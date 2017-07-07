@@ -1,4 +1,4 @@
-package com.byAJ.config;
+package byaj.configs;
 
 
 import byaj.models.Role;
@@ -27,9 +27,11 @@ public class DataLoader implements CommandLineRunner{
         System.out.println("Loading data . . .");
 
         roleRepository.save(new Role("USER"));
+        roleRepository.save(new Role("EMPLOYER"));
         roleRepository.save(new Role("ADMIN"));
 
         Role adminRole = roleRepository.findByRole("ADMIN");
+        Role employerRole = roleRepository.findByRole("EMPLOYER");
         Role userRole = roleRepository.findByRole("USER");
 
         User user = new User("bob@bob.com","bob","Bob","Bobberson", true, "bob");

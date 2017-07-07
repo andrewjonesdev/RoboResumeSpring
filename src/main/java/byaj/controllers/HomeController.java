@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -147,7 +148,26 @@ public class HomeController {
             userService.saveUser(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
+        roleRepository.save(new Role("USER"));
+        roleRepository.save(new Role("EMPLOYER"));
+        roleRepository.save(new Role("ADMIN"));
 
+        Role adminRole = roleRepository.findByRole("ADMIN");
+        Role employerRole = roleRepository.findByRole("EMPLOYER");
+        Role userRole = roleRepository.findByRole("USER");
+
+        if (user.getRoleSettings().toUpperCase().equals("ADMIN")) {
+            user.setRoles(Arrays.asList(adminRole));
+            userRepository.save(user);
+        }
+        if (user.getRoleSettings().toUpperCase().equals("EMPLOYER")) {
+            user.setRoles(Arrays.asList(employerRole));
+            userRepository.save(user);
+        }
+        if (user.getRoleSettings().toUpperCase().equals("USER")) {
+            user.setRoles(Arrays.asList(userRole));
+            userRepository.save(user);
+        }
         return "base2";
     }
     @GetMapping("/resume")
