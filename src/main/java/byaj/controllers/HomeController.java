@@ -232,8 +232,8 @@ public class HomeController {
         }
         if(search.getSearchType().toLowerCase().equals("jobtitle")){
             ArrayList<User> job = new ArrayList();
-            List<Job> comp = jobRepository.findAllByJobTitleOrderByJobStartYearDesc(search.getSearchValue());
-            model.addAttribute("jobs", job);
+            //List<Job> comp = jobRepository.findAllByJobTitleOrderByJobStartYearDesc(search.getSearchValue());
+            model.addAttribute("jobs", jobRepository.findAllByJobTitleOrderByJobStartYearDescJobStartMonthDesc(search.getSearchValue()));
             return "jobResults2";
         }
         return "redirect:/";
