@@ -206,6 +206,7 @@ public class HomeController {
         }
         model.addAttribute("search", new Search());
         model.addAttribute("rb", new ResumeBuilder());
+        model.addAttribute("jb", new JobBuilder());
         search.setSearchRes(userRepository.findByUsername(principal.getName()).getId());
         searchRepository.save(search);
         if(search.getSearchType().toLowerCase().equals("person")){
