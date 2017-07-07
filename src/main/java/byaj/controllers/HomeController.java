@@ -232,7 +232,7 @@ public class HomeController {
         }
         if(search.getSearchType().toLowerCase().equals("jobtitle")){
             ArrayList<User> job = new ArrayList();
-            List<Job> comp = jobRepository.findAllByJobTitleOrderByJobStartYearDescStartMonthDesc(search.getSearchValue());
+            List<Job> comp = jobRepository.findAllByJobTitleOrderByJobStartYearDescJobStartMonthDesc(search.getSearchValue());
             model.addAttribute("jobs", job);
             return "jobResults2";
         }
