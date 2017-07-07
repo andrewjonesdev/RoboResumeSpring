@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html 	xmlns="http://www.w3.org/1999/xhtml"
-         xmlns:th="http://www.thymeleaf.org"
+         xmlns:th="www.thymeleaf.org"
          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8" />
@@ -40,13 +40,13 @@
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios1" value="USER" checked/>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="USER" th:field="*{roleSettings}" checked/>
                 User
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="optionsRadios" id="optionsRadios2" value="EMPLOYER"/>
+                <input type="radio" name="optionsRadios" id="optionsRadios2" value="EMPLOYER" th:field="*{roleSettings}"/>
                 Employer
             </label>
         </div>
