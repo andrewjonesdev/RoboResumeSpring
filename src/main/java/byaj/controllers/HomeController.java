@@ -333,7 +333,7 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/generate")
+    @PostMapping("/generate")
     public String displaySearchedResume(ResumeBuilder rb, BindingResult bindingResult, Model model, Principal principal){
         model.addAttribute("search", new Search());
         model.addAttribute("resume", userRepository.findById(Integer.parseInt(rb.getRbValue())));

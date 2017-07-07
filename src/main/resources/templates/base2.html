@@ -38,7 +38,7 @@
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
-            <form class="navbar-form navbar-left" th:action="@{/search}" th:object="${search}">
+            <form class="navbar-form navbar-left" th:action="@{/search}" th:object="${search}" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" th:field="*{searchValue}"/>
                 </div>
