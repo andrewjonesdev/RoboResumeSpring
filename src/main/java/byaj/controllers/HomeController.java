@@ -288,7 +288,7 @@ public class HomeController {
         model.addAttribute("search", new Search());
         model.addAttribute("jb", new JobBuilder());
 
-        model.addAttribute("jobs", jobRepository.findAllByJobTitleOrdeOrderByJobStartYearDescOrderByStartMonthDesc());
+        model.addAttribute("jobs", jobRepository. findAllByOrderByJobTitleAscJobEmployerAsc());
         return "jobResults2";
 
     }
