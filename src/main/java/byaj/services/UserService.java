@@ -40,12 +40,15 @@ public class UserService {
     }
 
     public void saveEmployer(User user) {
-        user.setRoles(Arrays.asList(roleRepository.findByRole("Employer")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("EMPLOYER")));
         user.setEnabled(true);
         userRepository.save(user);
     }
 
     public void saveAdmin(User user) {
+        user.setRoles(Arrays.asList(roleRepository.findByRole("USER")));
+        user.setRoles(Arrays.asList(roleRepository.findByRole("EMPLOYER")));
         user.setRoles(Arrays.asList(roleRepository.findByRole("ADMIN")));
         user.setEnabled(true);
         userRepository.save(user);

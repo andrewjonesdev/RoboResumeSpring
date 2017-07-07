@@ -145,7 +145,20 @@ public class HomeController {
         if (result.hasErrors()) {
             return "register2";
         } else {
-            userService.saveUser(user);
+            if (user.getRoleSettings().toUpperCase().equals("ADMIN")) {
+                //user.setRoles(Arrays.asList(adminRole));
+                //userRepository.save(user);
+                userService.saveAdmin(user);
+            }
+            if (user.getRoleSettings().toUpperCase().equals("EMPLOYER")) {
+                //user.setRoles(Arrays.asList(employerRole));
+                //userRepository.save(user);
+                userService.saveEmployer(user);
+            }
+            if (user.getRoleSettings().toUpperCase().equals("USER")) {
+                //user.setRoles(Arrays.asList(userRole));
+                //userRepository.save(user);
+                userService.saveAdmin(user);
             model.addAttribute("message", "User Account Successfully Created");
         }
         //roleRepository.save(new Role("USER"));
@@ -156,20 +169,7 @@ public class HomeController {
         //Role employerRole = roleRepository.findByRole("EMPLOYER");
         //Role userRole = roleRepository.findByRole("USER");
 
-        if (user.getRoleSettings().toUpperCase().equals("ADMIN")) {
-            //user.setRoles(Arrays.asList(adminRole));
-            //userRepository.save(user);
-            userService.saveAdmin(user);
-        }
-        if (user.getRoleSettings().toUpperCase().equals("EMPLOYER")) {
-            //user.setRoles(Arrays.asList(employerRole));
-            //userRepository.save(user);
-            userService.saveEmployer(user);
-        }
-        if (user.getRoleSettings().toUpperCase().equals("USER")) {
-            //user.setRoles(Arrays.asList(userRole));
-            //userRepository.save(user);
-            userService.saveAdmin(user);
+
         }
         return "redirect:/";
     }
