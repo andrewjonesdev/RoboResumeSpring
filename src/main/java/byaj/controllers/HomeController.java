@@ -245,7 +245,7 @@ public class HomeController {
         model.addAttribute("search", new Search());
         model.addAttribute("rb", new ResumeBuilder());
 
-            model.addAttribute("results", userRepository.findAllOrderByLastName());
+            model.addAttribute("results", userRepository.findAllByOrderByLastNameAscFirstNameAsc());
             return "searchResults2";
 
     }
@@ -288,7 +288,7 @@ public class HomeController {
         model.addAttribute("search", new Search());
         model.addAttribute("jb", new JobBuilder());
 
-        model.addAttribute("jobs", jobRepository.findAllOrderByJobTitle());
+        model.addAttribute("jobs", jobRepository.findAllByJobTitleOrdeOrderByJobStartYearDescOrderByStartMonthDesc());
         return "jobResults2";
 
     }
