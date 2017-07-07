@@ -16,5 +16,6 @@ public interface JobRepository extends CrudRepository<Job, Integer> {
     public List<Job> findAllByJobResOrderByJobStartYearDescJobStartMonthDesc(int num);
     public List <Job> findAllByOrderByJobTitleAscJobEmployerAsc();
     public List <Job> findAllByJobTitleOrderByJobStartYearDescJobStartMonthDesc(String jobTitle);
+    public List <Job> findAllByJobTitleOrderByJobStartYearDesc();
     public List<Job> findAllByJobEmployerOrderByJobResAsc(String employer);
 }
