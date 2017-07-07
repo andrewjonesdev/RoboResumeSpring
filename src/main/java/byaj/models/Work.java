@@ -1,5 +1,7 @@
 package byaj.models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -29,6 +31,7 @@ public class Work {
     private int workEndYear;
     
    @Lob
+   @Type(type = "text")
     private String workDuties;
     
     @Column(columnDefinition="integer default -1")
